@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+\usepackage{tikz}
+
+\makeatletter
+\pgfdeclareshape{equaltri}{
+	\savedanchor{\text}{
+		\pgfmathsetlength\pgf@x{-0.5\wd\pgfnodeparttextbox}
+		\pgfmathsetlength\pgf@y{-0.5\ht\pgfnodeparttextbox}
+	}
+	\anchor{top}{
+		\text
+		\pgfmathsetlength\pgf@y{-sqrt(3)*\pgf@x+sqrt(3)*0.5mm-\pgf@y+0.25mm}
+		\pgfmathsetlength\pgf@x{0}
+	}
+	\anchor{bottom left}{
+		\text \pgf@xa=\pgf@x
+		\pgfmathsetlength\pgf@x{1.5*\pgf@xa-0.75mm+sqrt(3)*\pgf@y/2-sqrt(3)*0.125mm}
+		\pgfmathsetlength\pgf@y{sqrt(3)*\pgf@xa/2-sqrt(3)*0.25mm+\pgf@y/2-0.125mm}
+	}
+	\anchor{bottom right}{
+		\text \pgf@xa=\pgf@x
+		\pgfmathsetlength\pgf@x{-1.5*\pgf@xa+0.75mm-sqrt(3)*\pgf@y/2+sqrt(3)*0.125mm}
+		\pgfmathsetlength\pgf@y{sqrt(3)*\pgf@xa/2-sqrt(3)*0.25mm+\pgf@y/2-0.125mm}
+	}
+	\anchor{center}{
+		\pgfpointorigin
+	}
+	\anchor{text}{
+		\text
+	}
+	\anchor{north west}{
+		\text
+		\pgfmathsetlength\pgf@y{-sqrt(3)*\pgf@x+sqrt(3)*0.5mm-\pgf@y+0.25mm}
+		\pgfmathsetlength\pgf@x{-sqrt(3)*\pgf@y/2}
+	}
+	\anchor{north}{
+		\text
+		\pgfmathsetlength\pgf@y{-sqrt(3)*\pgf@x+sqrt(3)*0.5mm-\pgf@y+0.25mm}
+		\pgfmathsetlength\pgf@x{0}
+	}
+	\anchor{north east}{
+		\text
+		\pgfmathsetlength\pgf@y{-sqrt(3)*\pgf@x+sqrt(3)*0.5mm-\pgf@y+0.25mm}
+		\pgfmathsetlength\pgf@x{sqrt(3)*\pgf@y/2}
+	}
+	\anchor{west}{
+		\text
+		\pgfmathsetlength\pgf@y{-sqrt(3)/4*\pgf@x+sqrt(3)*0.125mm-\pgf@y/4+0.0625mm}
+		\pgfmathsetlength\pgf@x{-sqrt(3)*\pgf@y*2}
+	}
+	\anchor{east}{
+		\text
+		\pgfmathsetlength\pgf@y{-sqrt(3)/4*\pgf@x+sqrt(3)*0.125mm-\pgf@y/4+0.0625mm}
+		\pgfmathsetlength\pgf@x{sqrt(3)*\pgf@y*2}
+	}
+	\anchor{south west}{
+		\text \pgf@xa=\pgf@x
+		\pgfmathsetlength\pgf@x{1.5*\pgf@xa-0.75mm+sqrt(3)*\pgf@y/2-0.125mm}
+		\pgfmathsetlength\pgf@y{sqrt(3)*\pgf@xa/2-sqrt(3)*0.25mm+\pgf@y/2-0.125mm}
+	}
+	\anchor{south}{
+		\text
+		\pgfmathsetlength\pgf@y{sqrt(3)/2*\pgf@x-sqrt(3)*0.25mm+\pgf@y/2-0.125mm}
+		\pgfmathsetlength\pgf@x{0}
+	}
+	\anchor{south east}{
+		\text \pgf@xa=\pgf@x
+		\pgfmathsetlength\pgf@x{-1.5*\pgf@xa+0.75mm-sqrt(3)*\pgf@y/2+0.125mm}
+		\pgfmathsetlength\pgf@y{sqrt(3)*\pgf@xa/2-sqrt(3)*0.25mm+\pgf@y/2-0.125mm}
+	}
+	\backgroundpath{
+		\text
+		\pgfmathsetlength\pgf@ya{-sqrt(3)*\pgf@x+sqrt(3)*0.5mm-\pgf@y+0.25mm}
+		\pgfmathsetlength\pgf@xa{0}
+		\pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+		\pgfmathsetlength\pgf@xa{-sqrt(3)*\pgf@ya/2}
+		\pgfmathsetlength\pgf@ya{-\pgf@ya/2}
+		\pgfpathlineto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+		\pgfmathsetlength\pgf@xa{-\pgf@xa}
+		\pgfpathlineto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+		\pgfpathclose
+	}
+}
+\makeatother
+
+\begin{document}
+\begin{tikzpicture}
+\node[equaltri,draw,fill=green] {Hallo Welt};
+\node[equaltri,draw,fill=blue] at (3,0){Hallo Welt 2};
+\node[equaltri,draw,fill=red] at (0,3){Hallo Welt 3};
+\end{tikzpicture}
+\end{document}
